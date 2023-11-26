@@ -1,0 +1,13 @@
+controller\Appeal.class
+controller\Disbursement.class
+controller\Applicant.class
+controller\CashDonation.class
+controller\GoodsDonation.class
+controller\OrganizationRep.class
+controller\Document.class
+controller\HELPAidConsole.class
+controller\Organization.class
+com\mycompany\helpaid\DriverHelpAid.class
+controller\Contribution.class
+controller\User.class
+controller\HelpAid.class
