@@ -4,7 +4,7 @@
 
 package com.mycompany.helpaid;
 
-import controller.HELPAidConsole;
+import view.LoginPage;
 
 
 
@@ -15,8 +15,8 @@ import controller.HELPAidConsole;
 public class DriverHelpAid {
 
     public static void main(String[] args) {
-        HELPAidConsole.init();
-        HELPAidConsole.MainMenu();
+        LoginPage loginPage = new LoginPage();
+        loginPage.setVisible(true);
     }
 }
 

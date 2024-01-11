@@ -11,30 +11,37 @@ import java.util.stream.Collectors;
 
 public class Appeal {
 
-    private String appealID;
-    private LocalDate fromDate;
-    private LocalDate toDate;
-    private String description;
-    private String outcome;
-    private Organization organization;
-    private ArrayList<Contribution> contributions = new ArrayList<>();
-    private ArrayList<Disbursement> disbursements = new ArrayList<>();
-    private static int baseAppealID = 100;
+    // Attributes
+    private String appealID;              // Unique identifier for the appeal
+    private LocalDate fromDate;           // Start date of the appeal
+    private LocalDate toDate;             // End date of the appeal
+    private String description;           // Description of the appeal
+    private String outcome;               // Outcome status of the appeal
+    private Organization organization;    // Organization associated with the appeal
+    private ArrayList<Contribution> contributions = new ArrayList<>(); // List of contributions to the appeal
+    private ArrayList<Disbursement> disbursements = new ArrayList<>(); // List of disbursements from the appeal
+    private static int baseAppealID = 100; // Base ID for generating unique appeal IDs
 
-    public Appeal(LocalDate fromDate, LocalDate toDate, 
-			String description, Organization organization) {
+
+   // Constructor for creating an appeal with specified details
+    public Appeal(LocalDate fromDate, LocalDate toDate, String description, Organization organization) {
+        // Initialize attributes
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.description = description;
         setOrganization(organization);
-	setContributions(contributions);
-	setDisbursements(disbursements);
+        setContributions(contributions);
+        setDisbursements(disbursements);
         setAppealID("A" + baseAppealID++);
         setOutcome("PENDING");
     }
+    
+    // Default constructor
     public Appeal() {
-		this(null, null, null, null);
-	}
+        this(null, null, null, null);
+    }
+
+    // Getter and Setter methods for appeal attributes
 
     public String getAppealID() {
         return appealID;
@@ -75,30 +82,31 @@ public class Appeal {
     public void setOutcome(String outcome) {
         this.outcome = outcome;
     }
-
+    // Method to get the associated organization
     public Organization getOrganization() {
         return organization;
     }
-
+    // Method to set the name of the associated organization
     public void setOrganization(Organization organization) {
         this.organization = organization;
     }
-
+     // Methods for adding new contributions and disbursements to the appeal
     public ArrayList<Contribution> getContributions() {
         return contributions;
     }
-
+     // Methods for adding new contributions and disbursements to the appeal
     public void setContributions(ArrayList<Contribution> contributions) {
         this.contributions = contributions;
     }
-
+     // Methods for adding new contributions and disbursements to the appeal
     public ArrayList<Disbursement> getDisbursements() {
         return disbursements;
     }
-
+     // Methods for adding new contributions and disbursements to the appeal
     public void setDisbursements(ArrayList<Disbursement> disbursements) {
         this.disbursements = disbursements;
     }
+    //Method to get the organization name
     public String getOrganizationName() {
 	return getOrganization().getOrgName();
     }
@@ -107,7 +115,7 @@ public class Appeal {
 	 * 
 	 * ======= add methods =========
 	 */
-    
+    // Method to add new disbursement
     public boolean addNewDisbursement(Disbursement dis) {
     if (dis != null) {
         if (disbursements != null) {
@@ -119,7 +127,7 @@ public class Appeal {
         throw new IllegalArgumentException("argument is null");
     }
 }
-
+    //method to add new contribution
     public boolean addNewContribution(Contribution con) {
         if (con != null) {
             if (contributions != null) {
@@ -135,6 +143,7 @@ public class Appeal {
 	 * 
 	 * ======= total methods =========
 	 */
+    //method  for total contributions
     public double totalContributions() {
     try {
         double cashContributions = getContributions().stream()
@@ -155,7 +164,7 @@ public class Appeal {
         return 0.0; // Return a default value or handle the error as needed.
     }
 }
-
+    //method for count total disbursement
     public double totalDisbursements() {
         try {
             return getDisbursements().stream()
@@ -170,7 +179,7 @@ public class Appeal {
 	 * 
 	 * ======= display methods =========
 	 */
-    
+    //method to display all contributions
     public String allContributions() {
     try {
         if (contributions != null){
@@ -186,7 +195,7 @@ public class Appeal {
         return "Error: Unable to fetch contributions"; // Return an error message or handle the error as needed.
     }
 }
-
+    //method to get all disbursement
     public String allDisbursements() {
     try {
         if (disbursements != null){
@@ -206,6 +215,8 @@ public class Appeal {
 	 * 
 	 * ======= has methods =========
 	 */
+    
+    //method for checking contribution exist
     public boolean hasContributions() {
     if (contributions != null) {
         return contributions.size() > 0;
@@ -213,7 +224,7 @@ public class Appeal {
         return false;
     }
 }
-
+    // method for checking disbursement exist
     public boolean hasDisbursements() {
         if (disbursements != null) {
             return disbursements.size() > 0;
@@ -225,7 +236,7 @@ public class Appeal {
 	 * 
 	 * ======= summary methods =========
 	 */
-    
+    //Method for generating Appeal Summary
     public String generateAppealSummary() {
     return String.format("Summary of Appeal [%s]: %s, Period: %s to %s",
         getAppealID(), getDescription(), getFromDate(), getToDate());
@@ -234,21 +245,21 @@ public class Appeal {
     /**
 	 *  -------------------number of (counter)
 	 */
-	
+	// Method for count the contribution
 	public int numOfContributions() {
             final ArrayList<Contribution> c = getContributions();
             return c != null ? c.size() : 0;
 	}
-	
+	//Method for count the disbursement
 	public int numOfDisbursements() {
             final ArrayList<Disbursement> d = getDisbursements();
             return d != null ? d.size() : 0;
 	}
-	
+	// method for checking is past appeal or not
 	public boolean isPastAppeal() {
 		return getToDate().isBefore(LocalDate.now());
 	}
-	
+	// method for checking is current appeal or not
 	public boolean isCurrentAppeal() {
 		return !isPastAppeal();
 	}

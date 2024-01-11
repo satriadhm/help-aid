@@ -4,22 +4,20 @@
  */
 package controller;
 
-import java.time.LocalDate;
-
-
 public class CashDonation extends Contribution {
-    private double amount;
-    private String paymentChannel;
-    private String referenceNo;
+    // Attributes
+    private double amount;           // Amount of the cash donation
+    private String paymentChannel;   // Payment channel used for the donation
+    private String referenceNo;      // Reference number associated with the donation
 
-    public CashDonation(Appeal appeal, double amount, String paymentChannel,
-			String referenceNo) {
-			super(appeal);
-			setAmount(amount);
-			setPaymentChannel(paymentChannel);
-			setReferenceNo(referenceNo);
-		}
-
+    // Constructor for creating a cash donation with specified details
+    public CashDonation(Appeal appeal, double amount, String paymentChannel, String referenceNo) {
+        super(appeal); // Call the constructor of the superclass (Contribution)
+        setAmount(amount);
+        setPaymentChannel(paymentChannel);
+        setReferenceNo(referenceNo);
+    }
+// Getter and Setter methods for cash donation attributes
 
     public double getAmount() {
         return amount;
@@ -44,7 +42,7 @@ public class CashDonation extends Contribution {
     public void setReferenceNo(String referenceNo) {
         this.referenceNo = referenceNo;
     }
-
+  // Getter and Setter methods for the base contribution ID
     public static int getBaseContributionID() {
         return baseContributionID;
     }

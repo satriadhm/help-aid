@@ -8,38 +8,44 @@ import java.io.Serializable;
 
 
 public class OrganizationRep extends User implements Serializable {
-    public static String holds_job_title = "holds job title";
-    private String jobTitle;
-    private Organization organization;
-    
+   // Static variable representing the job title attribute
+    public static String holdsJobTitle = "holds job title";
+
+    // Attributes
+    private String jobTitle;           // Job title of the organization representative
+    private Organization organization; // The organization associated with the representative
+
+    // Default constructor
     public OrganizationRep() {
-        this(null,null,null,null,null,null);
+        this(null, null, null, null, null, null);
     }
 
-    public OrganizationRep(String userName, String fullName, String email, String mobileNo, String jobTitle, Organization  organization) {
-            super(userName, fullName, email, mobileNo);
-            setJobTitle(jobTitle);
-            setOrganization(organization);
+    // Constructor for creating an organization representative with specified details
+    public OrganizationRep(String userName, String fullName, String email, String mobileNo, String jobTitle, Organization organization) {
+        super(userName, fullName, email, mobileNo); // Call the constructor of the superclass (User)
+        setJobTitle(jobTitle);
+        setOrganization(organization);
     }
+     // Getter and Setter methods for organization representative attributes
     public String getJobTitle() {
         return jobTitle;
     }
-
+ // Getter and Setter methods for organization representative attributes
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
     }
-
+ // Getter and Setter methods for organization representative attributes
     public Organization getOrganization() {
         return organization;
     }
-
+ // Getter and Setter methods for organization representative attributes
     public void setOrganization(Organization organization) {
         this.organization = organization;
     }
-
+// Override toString method to provide a string representation of the organization representative
     @Override
     public String toString() {
-        return  super.toString() + ";" + holds_job_title + ": " + jobTitle;
+        return  super.toString() + ";" + holdsJobTitle + ": " + jobTitle;
     }
     
     @Override

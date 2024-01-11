@@ -10,24 +10,36 @@ import java.util.stream.Collectors;
 
 
 public class HelpAid {
-    private ArrayList<Organization> organizations;
-    private ArrayList<Contribution> contributions;
-    private ArrayList<Appeal> appeals;
-    private ArrayList<User> users;
+    
+    // Attributes
+    private ArrayList<Organization> organizations;   // List of organizations
+    private ArrayList<Contribution> contributions;    // List of contributions
+    private ArrayList<Appeal> appeals;                // List of appeals
+    private ArrayList<User> users;                    // List of users
 
+    // Default constructor to initialize lists
     public HelpAid() {
-       	setOrganizations(new ArrayList<>());
-	setAppeals(new ArrayList<>());
-	setUsers( new ArrayList<>());
+        setOrganizations(new ArrayList<>());
+        setAppeals(new ArrayList<>());
+        setUsers(new ArrayList<>());
         setContributions(new ArrayList<>());
     }
-     public ArrayList<Contribution> getContributions() {
+
+        
+    public int getOrgCounts(){
+        return organizations.size();
+    }
+    
+    // Getter and Setter methods for contributions
+    public ArrayList<Contribution> getContributions() {
         return contributions;
     }
 
     public void setContributions(ArrayList<Contribution> contributions) {
         this.contributions = contributions;
     }
+
+    // Getter and Setter methods for organizations
     public ArrayList<Organization> getOrganizations() {
         return organizations;
     }
@@ -36,6 +48,7 @@ public class HelpAid {
         this.organizations = organizations;
     }
 
+    // Getter and Setter methods for appeals
     public ArrayList<Appeal> getAppeals() {
         return appeals;
     }
@@ -44,6 +57,7 @@ public class HelpAid {
         this.appeals = appeals;
     }
 
+    // Getter and Setter methods for users
     public ArrayList<User> getUsers() {
         return users;
     }

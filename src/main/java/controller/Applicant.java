@@ -8,40 +8,48 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Applicant extends User  implements Serializable {
-	static int nextApplicantID = 1000;
-	private String IDNo;
-	private String address;
-	private double householdIncome;
-	private Organization organization;
-	private ArrayList<Document> documents;
-	private  ArrayList<Disbursement> disbursements;	
-	public Applicant(String userName, String fullName, String email, 
-			String mobileNo, String IDNo, String address, double householdIncome, 
-			Organization organization) {
-		super(userName, fullName, email, mobileNo);
-		setIDNo(IDNo);
-		setAddress(address);
-		setHouseholdIncome(householdIncome);
-		setOrganization(organization);
-		setDocuments(new ArrayList<Document>());
-		setDisbursements(new ArrayList<Disbursement>());
+	 // Static variable to generate unique applicant IDs
+    static int nextApplicantID = 1000;
 
-	}
-	
-	public Applicant(String fullname,
-			String email, String mobileNo, String IDno, String address,
-			double householdIncome, Organization organization) {
-			this("AP" + nextApplicantID++, fullname, email, mobileNo, 
-				IDno, address, householdIncome, organization);
-                        this.setUsername("user" + getIDNo());
-                        this.setPassword("passwordFor" + getIDNo());
-	}
-        
-        public Applicant(){
-            this(null,null,null,null,null,0,null);
-        }
-		
+    // Attributes
+    private String IDNo;                     // National ID of the applicant
+    private String address;                  // Address of the applicant
+    private double householdIncome;          // Household income of the applicant
+    private Organization organization;       // Organization associated with the applicant
+    private ArrayList<Document> documents;   // List of documents submitted by the applicant
+    private ArrayList<Disbursement> disbursements; // List of disbursements received by the applicant
 
+    // Constructor for creating an applicant with specified details
+    public Applicant(String userName, String fullName, String email,
+                      String mobileNo, String IDNo, String address, double householdIncome,
+                      Organization organization) {
+        // Call the constructor of the superclass (User)
+        super(userName, fullName, email, mobileNo);
+
+        // Initialize attributes
+        setIDNo(IDNo);
+        setAddress(address);
+        setHouseholdIncome(householdIncome);
+        setOrganization(organization);
+        setDocuments(new ArrayList<Document>());
+        setDisbursements(new ArrayList<Disbursement>());
+    }
+
+    // Alternate constructor with default username and password
+    public Applicant(String fullname, String email, String mobileNo,
+                      String IDno, String address, double householdIncome, Organization organization) {
+        this("AP" + nextApplicantID++, fullname, email, mobileNo,
+                IDno, address, householdIncome, organization);
+        this.setUsername("user" + getIDNo());
+        this.setPassword("passwordFor" + getIDNo());
+    }
+
+      // Default constructor
+    public Applicant() {
+        this(null, null, null, null, null, 0, null);
+    }
+
+    // Getter and Setter methods for applicant attributes
 	public String getIDNo() {
 		return IDNo;
 	}
@@ -90,54 +98,58 @@ public class Applicant extends User  implements Serializable {
 		this.disbursements = disbursements;
 	}
 
-	
-	public void addDocument(Document doc) {
-		getDocuments().add(doc);
-	}
-	
-	
-	
-	public void addDisbursement(Disbursement disb) {
-		getDisbursements().add(disb);
-	}
-	
-	public int numOfDisbursements() {
-		return getDisbursements().size();
-	}
-	
-	public String displayDocuments() {
-		String dStr = "";
-		for (Document d : documents) {
-			dStr += "@@@" + d.toString() + "\n";
-		}
-		return dStr;
-	}
-	
-	public String displayDisbursements() {
-		String dbStr= "";
-		for (Disbursement d : disbursements) {
-			dbStr += d.toString() + "\n";
-		}
-		return dbStr;
-	}
+	 // Method to add a document to the applicant's list of documents
+    public void addDocument(Document doc) {
+        getDocuments().add(doc);
+    }
 
-        @Override
-	public String toString() {
-		String msg = super.toString() 
-                                + "\n  ID No: "+ IDNo
-                                + "\n  lives under address: "
-				+ address 
-                                + "\n  with household income: "
-                                + householdIncome 
-                                +"\n   Documents: "
-				+ displayDocuments();
-		if (numOfDisbursements() != 0)
-			msg += "\n  has received " + numOfDisbursements() + " disbursements.";
-		return msg;
-	}
+    // Method to add a disbursement to the applicant's list of disbursements
+    public void addDisbursement(Disbursement disb) {
+        getDisbursements().add(disb);
+    }
 
+    // Method to get the number of disbursements received by the applicant
+    public int numOfDisbursements() {
+        return getDisbursements().size();
+    }
+
+    // Method to display information about the documents submitted by the applicant
+    public String displayDocuments() {
+        String dStr = "";
+        for (Document d : documents) {
+            dStr += "@@@" + d.toString() + "\n";
+        }
+        return dStr;
+    }
+
+    // Method to display information about the disbursements received by the applicant
+    public String displayDisbursements() {
+        String dbStr = "";
+        for (Disbursement d : disbursements) {
+            dbStr += d.toString() + "\n";
+        }
+        return dbStr;
+    }
+
+    // Override toString method to provide a string representation of the applicant
+    @Override
+    public String toString() {
+        String msg = super.toString()
+                + "\n  ID No: " + IDNo
+                + "\n  lives under address: "
+                + address
+                + "\n  with household income: "
+                + householdIncome
+                + "\n   Documents: "
+                + displayDocuments();
+        if (numOfDisbursements() != 0)
+            msg += "\n  has received " + numOfDisbursements() + " disbursements.";
+        return msg;
+    }
+
+    // The compareTo method is inherited from the User class and needs to be implemented
     @Override
     public int compareTo(User o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

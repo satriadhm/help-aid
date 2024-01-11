@@ -8,17 +8,22 @@ import java.time.LocalDate;
 
 
 public abstract class Contribution {
+    // Static variable to generate unique contribution IDs
     static int baseContributionID = 100;
-    private LocalDate receivedDate;
-    private String contributionID;
-    private Appeal appeal;
 
-    public Contribution( Appeal appeal) {
-        setReceivedDate(LocalDate.now());
-        setContributionID("C"+ baseContributionID++);
-       setAppeal(appeal);
+    // Attributes
+    private LocalDate receivedDate;   // Date when the contribution was received
+    private String contributionID;    // Unique identifier for the contribution
+    private Appeal appeal;            // The appeal associated with the contribution
+
+    // Constructor for creating a contribution with specified details
+    public Contribution(Appeal appeal) {
+        setReceivedDate(LocalDate.now());   // Set the received date to the current date
+        setContributionID("C" + baseContributionID++); // Generate a unique contribution ID
+        setAppeal(appeal);  // Set the associated appeal
     }
-
+    
+    // Getter and Setter methods for contribution attributes
     public LocalDate getReceivedDate() {
         return receivedDate;
     }
@@ -42,7 +47,7 @@ public abstract class Contribution {
     public void setAppeal(Appeal appeal) {
         this.appeal = appeal;
     }
-
+     // Override toString method to provide a string representation of the contribution
     @Override
     public String toString() {
         return "Contribution{" + "receivedDate=" + receivedDate + ", contributionID=" + contributionID + ", appeal=" + appeal + '}';
